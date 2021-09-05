@@ -1,0 +1,145 @@
+@import url("https://fonts.googleapis.com/css?family=Cormorant+Garamond:300,400,600|Tulpen+One&display=swap");
+:root {
+  --body-bg: #fafafa;
+  --page-bg: #f5f5f5;
+  --dark-text: #2a2935;
+
+  --baseline: 12px;
+
+  --book-title: "Tulpen One", sans-serif;
+  --title: "Cormorant Garamond", serif;
+  --body: "Cormorant Garamond", serif;
+  --base-size: var(--baseline) * 1.2;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--body-bg);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.cover {
+  width: calc(var(--baseline) * 60);
+  height: calc(var(--baseline) * 42.6);
+  box-shadow: 0 0 100px rgba(0, 0, 0, 0.3);
+}
+
+.book {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  perspective: 1200px;
+}
+.bookpg {
+  position: relative;
+  width: 50%;
+  height: 100%;
+  display: grid;
+  transform: rotateY(0deg);
+  transition: transform 0.9s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transform-origin: 0% 0%;
+  background-color: var(--page-bg);
+  background-image: linear-gradient(90deg, #e3e3e3 0%, rgba(247, 247, 247, 0) 18%);
+}
+.bookpg:nth-of-type(1) {
+  background-image: linear-gradient(-90deg, #e3e3e3 0%, rgba(247, 247, 247, 0) 18%);
+}
+.bookpg1 {
+  cursor: pointer;
+  overflow: hidden;
+}
+.bookpg2 {
+  position: absolute;
+  right: 0;
+  pointer-events: none;
+  transform-style: preserve-3d;
+  background-color: var(--page-bg);
+  background-image: linear-gradient(90deg, #e3e3e3 0%, rgba(247, 247, 247, 0) 18%);
+}
+.bookpg4{
+  cursor: pointer;
+  padding: 0 calc(var(--baseline) * 3);
+}
+.front {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform: rotateY(0deg) translateZ(1px);
+}
+.back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding: 0 calc(var(--baseline) * 1.8);
+  transform: rotateY(180deg) translateZ(1px);
+}
+.bookpg .pgcon {
+  padding: var(--baseline);
+  height: 100%;
+  position: relative;
+  text-align: center;
+}
+.bookpg .book-title {
+  font-family: var(--book-title);
+  font-size: calc(var(--base-size) * 3);
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--dark-text);
+  margin-top: calc(var(--baseline) * 5);
+  margin-bottom: calc(var(--baseline) * 2);
+}
+
+.bookpg .credits {
+  font-family: var(--title);
+  text-transform: uppercase;
+  font-size: calc(var(--base-size) * 0.8);
+  margin-bottom: calc(var(--baseline) * 2);
+  letter-spacing: 1px;
+}
+.bookpg .title {
+  font-family: var(--title);
+  font-size: calc(var(--base-size) * 1);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: calc(var(--baseline) * 5);
+  margin-bottom: calc(var(--baseline) * 3);
+}
+.bookpg .blockquote {
+  margin-bottom: calc(var(--baseline) * 2);
+}
+.bookpg .blockquote-text {
+  font-family: var(--title);
+  font-size: calc(var(--base-size) * 0.67);
+  font-style: italic;
+  text-align: justify;
+}
+.bookpg .blockquote-reference {
+  font-family: var(--title);
+  font-size: calc(var(--base-size) * 0.7);
+  margin-top: calc(var(--baseline) * 0.3);
+  float: right;
+  text-transform: uppercase;
+}
+.bookpg .pgnum {
+  position: absolute;
+  bottom: var(--baseline);
+  width: calc(100% - (var(--baseline) * 2));
+  font-family: var(--title);
+  font-size: calc(var(--base-size) * 0.67);
+  text-align: center;
+}
+.book input[type=radio] {
+  display: none;
+}
+.book input[type=radio]:checked + .bookpg {
+  transition: transform 0.9s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transform: rotateY(-180deg);
+}
